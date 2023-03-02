@@ -25,7 +25,7 @@ export class FoodStuffResolver {
 
     @Query(returns => FoodStuffModel)
     async foodStuff(
-        @Args('id', ParseUUIDPipe) id: string
+        @Args('id') id: string
     ): Promise<FoodStuffModel> {
         return this.foodStuffService.findOne(id);
     }

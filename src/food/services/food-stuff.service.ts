@@ -36,17 +36,18 @@ export class FoodStuffService {
     
     async create(createDto: CreateFoodStuffDto): Promise<FoodStuffModel> {
         const entity = new this.foodStuffModel(createDto);
-        entity.id = entity._id.toString();
 
         return entity.save();
     }
 
     async findOne(id: string): Promise<FoodStuffModel | never> {
-        for (const foodStuff of foodStuffs) {
-            if (foodStuff.id === id) return foodStuff;
-        };
+        const foundFoodStuff = await this.foodStuffModel.findById(id);
 
-        throw new HttpException('Food stuff not found', 404);
+        if (!foundFoodStuff) {
+            throw new HttpException('Food stuff not found', 404);
+        }
+        
+        return foundFoodStuff;
     }
 
     async findAll(

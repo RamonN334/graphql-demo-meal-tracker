@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema } from '@nestjs/mongoose';
 import { SchemaFactory } from '@nestjs/mongoose/dist';
-import mongoose, { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument, Types } from 'mongoose';
 
 export enum FoodStuffType {
     MEAT = 'Meat',
@@ -14,14 +14,8 @@ export type FoodStuffDocument = HydratedDocument<FoodStuffModel>;
 @ObjectType()
 @Schema({ collection: 'food_stuffs'})
 export class FoodStuffModel {
-    @Field()
-    @Prop({
-        type: String,
-        index: true,
-        unique: true,
-        required: true,
-    })
-    id: string;
+    @Field(() => String)
+    _id: Types.ObjectId;
 
     @Field()
     @Prop({ lowercase: true, maxlength: 200, required: false, unique: true, })
