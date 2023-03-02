@@ -1,0 +1,8 @@
+Dockerfile.*
+dist
+node_modules
+test
+.gitignore
+.eslintrc.js
+*.md
+*.gql

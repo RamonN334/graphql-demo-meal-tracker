@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: mongo:6.0
+    container_name: db
+    ports:
+      - 4001:27017
+    restart: always
+  api:
+    image: meal-tracker
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: meal-tracker
+    ports:
+      - 4000:3000
+    volumes:
+      - /tmp/npm-cache:/root/.npm:z
+      - ./src:/usr/src/app/src:z
+    depends_on:
+      - db

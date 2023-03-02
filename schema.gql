@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateFoodStuffDto {
+  carbohydrates: Float!
+  description: String
+  fats: Float!
+  name: String!
+  proteins: Float!
+  type: String!
+}
+
+type FoodStuffModel {
+  calories: Float!
+  carbohydrates: Float!
+  description: String
+  fats: Float!
+  id: String!
+  name: String!
+  proteins: Float!
+  type: String!
+}
+
+type Mutation {
+  createFoodStuff(createFoodStuffDto: CreateFoodStuffDto!): FoodStuffModel!
+}
+
+type Query {
+  foodStuff(id: String!): FoodStuffModel!
+  foodStuffs(skip: Float! = 0, take: Float! = 100): [FoodStuffModel!]!
+}
